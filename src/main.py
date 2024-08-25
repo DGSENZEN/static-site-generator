@@ -1,5 +1,8 @@
 #!/usr/bin/env python3
+from typing import Text
 from textnode import TextNode
+from htmlnode import *
+from leafnode import *
 
 
 def main():

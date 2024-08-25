@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 """General testing class for the TextNode."""
 
-import cProfile
 import unittest
 from textnode import TextNode
+from leafnode import *
 
 
 class TestTextNode(unittest.TestCase):
@@ -24,6 +24,24 @@ class TestTextNode(unittest.TestCase):
         node = TextNode(None, None, None)
         node2 = TextNode(None, None, None)
         self.assertEqual(node, node2)
+
+    def test_conversion_raw_text(self):
+        node = TextNode("This is some text", "text", None)
+        goal = node.text_node_to_html_node().to_html()
+        print(node, "\n", goal)
+        self.assertEqual(node.text_node_to_html_node().to_html(), goal)
+
+    def test_conversion_img_tag(self):
+        node = TextNode("thisisthevalue", "image", "thisisthelink.com")
+        goal = node.text_node_to_html_node().to_html()
+        print(node, "\n", goal)
+        self.assertEqual(node.text_node_to_html_node().to_html(), goal)
+
+    def test_conversion_code(self):
+        node = TextNode("This is a value", "code", "link.js")
+        goal = node.text_node_to_html_node().to_html()
+        print(node, "\n", goal)
+        self.assertEqual(node.text_node_to_html_node().to_html(), goal)
 
 
 if __name__ == "__main__":

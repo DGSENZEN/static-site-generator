@@ -2,15 +2,16 @@ from htmlnode import HTMLNode
 
 
 class LeafNode(HTMLNode):
-    def __init__(self, tag=None, value=None, props=None):
+    def __init__(self, tag, value, props=None):
         super().__init__(tag, value, None, props)
 
     def to_html(self):
-        props_html = ""
         if self.value is None:
-            return ValueError
-        props_html = self.props_to_html()
+            return ValueError("Invalid HTML: must have a value.")
         if self.tag is None:
-            return self.tag
+            return self.value
 
-        return f"<{self.tag}{props_html}>{self.value}</{self.tag}>"
+        return f"<{self.tag}{self.props_to_html()}>{self.value}</{self.tag}>"
+
+    def __repr__(self) -> str:
+        return f"LeafNode({self.tag}, {self.value}, {self.props})"

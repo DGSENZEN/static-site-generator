@@ -5,8 +5,8 @@ class HTMLNode:
         self.children = children
         self.props = props
 
-    def to_html(self) -> type["ValueError"] | str | None:
-        pass
+    def to_html(self):
+        raise NotImplementedError("Not implemented yet.")
 
     def props_to_html(self):
         property_html = ""
