@@ -1,10 +1,13 @@
+from re import split
+from typing import Text
+from leafnode import *
+
 text_type_text = "text"
 text_type_bold = "bold"
 text_type_italic = "italic"
 text_type_code = "code"
 text_type_link = "link"
 text_type_image = "image"
-from leafnode import *
 
 
 class TextNode:
@@ -23,7 +26,7 @@ class TextNode:
             and self.url == other.url
         )
 
-    def text_node_to_html_node(self):
+    def text_node_to_html_node(self) -> LeafNode | ValueError:
         match self.text_type:
             case "text":
                 return LeafNode(None, self.text, None)
