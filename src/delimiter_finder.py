@@ -103,5 +103,12 @@ def text_to_text_nodes(text):
     return new_nodes
 
 
-def markdown_to_blocks(markdown_text):
-    return markdown_text.strip("\n").split("\n\n")
+def markdown_to_blocks(markdown):
+    blocks = markdown.split("\n\n")
+    filtered_blocks = []
+    for block in blocks:
+        if block == "":
+            continue
+        block = block.strip()
+        filtered_blocks.append(block)
+    return filtered_blocks
